@@ -1,0 +1,17 @@
+spring.datasource.url=jdbc:postgresql://db:5432/bookmarks
+spring.datasource.username=bookmarks
+spring.datasource.password=bookmarks
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.generate-ddl = true
+
+bookmarks.max_page_length = 100
+bookmarks.remember_me_secret_key = ${REMEMBER_ME_SECRET_KEY}
+
+# verify_code_expiration_time is in terms of seconds
+bookmarks.verify_code_expiration_time = 1800
+
+bookmarks.emails.demo_bypass = false
+bookmarks.emails.from = "test@localhost"
+bookmarks.emails.verify_user_route = "http://localhost:3000/verify_user"
+bookmarks.emails.reset_password_route = "http://localhost:3000/reset_password"
