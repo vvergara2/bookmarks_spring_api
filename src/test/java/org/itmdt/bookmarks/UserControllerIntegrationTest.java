@@ -221,6 +221,27 @@ public class UserControllerIntegrationTest {
     }
 
     @Test
+    public void newUser_existingEmailDifferentCapitalization_returns403() throws Exception {
+        HttpHeaders basicHeaders = new HttpHeaders();
+        basicHeaders.setContentType(MediaType.APPLICATION_JSON);
+        JSONObject newGroup = new JSONObject();
+        newGroup.put("email", "autheduser@test.com");
+        newGroup.put("username", "unusedName");
+        newGroup.put("password", "abcdefghijklmnopqrstuvwxyz");
+        HttpEntity<String> req = new HttpEntity<>(newGroup.toString(), basicHeaders);
+
+        ResponseEntity<String> response =
+                restTemplate.exchange(
+                        "/users",
+                        HttpMethod.POST,
+                        req,
+                        String.class
+                );
+
+        assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());
+    }
+
+    @Test
     public void newUser_existingUsername_returns403() throws Exception {
         HttpHeaders basicHeaders = new HttpHeaders();
         basicHeaders.setContentType(MediaType.APPLICATION_JSON);
