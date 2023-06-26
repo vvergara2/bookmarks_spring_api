@@ -4,14 +4,12 @@ services:
   spring_app:
     build: .
     ports:
-      - 8080:8080
+      - "127.0.0.1:8080:8080"
     depends_on:
       - db
     restart: unless-stopped
   db:
     image: postgres:14.0
-    ports: 
-      - 8010:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
