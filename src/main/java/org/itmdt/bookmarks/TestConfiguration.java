@@ -119,7 +119,7 @@ public class TestConfiguration {
     }
 
     @Bean
-    @Profile("development")
+    @Profile({"development", "demo"})
     CommandLineRunner initDatabase() {
         return args -> {
             // hash of "pw"
